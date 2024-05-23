@@ -60,6 +60,8 @@
                                 @if (Auth()->user()->rol == 1)
                                 <li><a class="dropdown-item" href="{{ route('usuarios') }}"><i class="fas fa-users"></i>Crear Usuarios</a></li>
                                 <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{ route('rol') }}"><i class="fas fa-user-tag"></i>Roles</a></li>
+                                <li><hr class="dropdown-divider"></li>
                                 @endif
                                <li class="text-center">
                                 <form method="POST" action="{{ route('logout') }}">
