@@ -21,55 +21,34 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{--  @if ($usuarios->count())
-                                @foreach ($usuarios as $usu)
-                                    <tr>
-                                        <td class="text-center">{{ $usu->tipo_documento }}</td>
-                                        <td class="text-center">{{ $usu->no_documento }}</td>
-                                        <td class="text-center">{{ $usu->nombre_completo }}</td>
-                                        <td class="text-center">{{ $usu->telefono }}</td>
-                                        @if ($usu->whatsapp !=null)
-                                        <td class="text-center">
-                                            <a href="https://wa.me/{{$usu->whatsapp}}" target="blanck"><i class="fab fa-whatsapp fa-lg" style="color: #00ea38 ;"></i></a>
-                                        </td>
-                                        @endif
-                                        <td class="text-center">{{ $usu->empresa }}</td>
-                                        <td class="text-center">{{ $usu->web_empresa }}</td>
-                                        <td class="text-center">{{ $usu->direccion }}</td>
-                                        <td class="text-center">
-                                            @if($usu->descripcion != "")
-                                                <button type="button" class="btn btn-primary" wire:click="cargarservicio({{$usu}})" data-bs-toggle="modal" data-bs-target="#verObs"><i class="fab fa-sistrix"></i></button>
-                                            @endif
-                                        </td>
-                                        <td class="text-center">{{ $usu->email }}</td>
-                                        <td class="text-center">{{ $roll::find($usu->rol)->rol }}</td>
-                                        <td class="text-center">{{ $usu->facebook }}</td>
-                                        <td class="text-center">{{ $usu->instagram }}</td>
-                                        <td class="text-center"><img class="fluid" src="{{asset($usu->foto)}}" alt="{{ $usu->foto}}" width="290px"></td>
-                                        <td class="d-flex justify-content-center">
-                                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                                <button type="button" class="btn btn-sm btn-success"
-                                                    wire:click="cargacredenciales({{ $usu->id }})"
-                                                    data-bs-toggle="modal" data-bs-target="#Modalcontraseña"><i
-                                                        class="fas fa-lock"></i></button>
-                                                <button type="button" class="btn btn-sm btn-warning"
-                                                    wire:click="cargausuario({{ $usu }})" data-bs-toggle="modal"
-                                                    data-bs-target="#Modaleditar"><i class="fas fa-user-edit"></i></button>
-                                                <button type="submit" class="btn btn-sm btn-danger"
-                                                    wire:click="$emit('deletePost',{{$usu->id}})"><i
-                                                        class="fas fa-trash-alt"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                @else
+                            @forelse ($this->usuarios as $usu)
                                 <tr>
-                                    <td colspan="19" class="text-center">No hay registros</td>
+                                    <td class="text-center">{{ $usu->name }}</td>
+                                    <td class="text-center">{{ $usu->email }}</td>
+                                    {{--  <td class="text-center">{{ $roll::find($usu->rol)->rol }}</td>  --}}
+                                    <td class="d-flex justify-content-center">
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                            <button type="button" class="btn btn-sm btn-success"
+                                                wire:click="cargacredenciales({{ $usu->id }})"
+                                                data-bs-toggle="modal" data-bs-target="#Modalcontraseña"><i
+                                                    class="fas fa-lock"></i></button>
+                                            <button type="button" class="btn btn-sm btn-warning"
+                                                wire:click="cargausuario({{ $usu }})" data-bs-toggle="modal"
+                                                data-bs-target="#Modaleditar"><i class="fas fa-user-edit"></i></button>
+                                            <button type="submit" class="btn btn-sm btn-danger"
+                                                wire:click="$emit('deletePost',{{$usu->id}})"><i
+                                                    class="fas fa-trash-alt"></i></button>
+                                        </div>
+                                    </td>
                                 </tr>
-                            @endif   --}}
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="text-center">No hay registros</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
-                    {{--  {{ $usuarios->links() }}  --}}
+                    {{ $this->usuarios->links() }}
                 </div>
             </div>
         </div>
