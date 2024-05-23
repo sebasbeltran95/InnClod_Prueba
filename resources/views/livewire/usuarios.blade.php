@@ -61,108 +61,37 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label class="{{ $errors->has('tipo_documento') ? ' text-danger': '' }}">Tipo de Documento</label>
-                            <select class="form-select {{ $errors->has('tipo_documento') ? ' is-invalid': '' }}" wire:model="tipo_documento">
-                                <option value="">Seleccione una opción...</option>
-                                <option value="Carnet Diplomatico">Carnet Diplomatico</option>
-                                <option value="Cédula de Ciudadania">Cédula de Ciudadania</option>
-                                <option value="Cédula de Extranjería">Cédula de Extranjería</option>
-                                <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
-                                <option value="Pasaporte">Pasaporte</option>
-                                <option value="Registro Civil">Registro Civil</option>
-                            </select>
-                            <div class="invalid-feedback">
-                                {{ $errors->first('tipo_documento') }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="{{ $errors->has('no_documento') ? ' text-danger': '' }}">No Documento</label>
-                            <input type="text" class="form-control {{ $errors->has('no_documento') ? ' is-invalid': '' }}" wire:model="no_documento" placeholder="Ingrese No de documento o NIT">
-                            <div class="invalid-feedback">
-                                {{ $errors->first('no_documento') }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="{{ $errors->has('nombre_completo') ? ' text-danger': '' }}">Nombre Completo</label>
-                            <input type="text" class="form-control {{ $errors->has('nombre_completo') ? ' is-invalid': '' }}" wire:model="nombre_completo" placeholder="Nombre completo">
-                            <div class="invalid-feedback">
-                                {{ $errors->first('nombre_completo') }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="{{ $errors->has('telefono') ? ' text-danger': '' }}">Telefono</label>
-                            <input type="number" class="form-control {{ $errors->has('telefono') ? ' is-invalid': '' }}" wire:model="telefono" placeholder="Ingrese numero de telefono">
-                            <div class="invalid-feedback">
-                                {{ $errors->first('telefono') }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="{{ $errors->has('whatsapp') ? ' text-danger': '' }}">Whatsapp</label>
-                            <input type="number" class="form-control {{ $errors->has('whatsapp') ? ' is-invalid': '' }}" wire:model="whatsapp" placeholder="Ingrese numero de telefono">
-                            <div class="invalid-feedback">
-                                {{ $errors->first('whatsapp') }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="{{ $errors->has('empresa') ? ' text-danger': '' }}">Empresa</label>
-                            <input type="text" class="form-control {{ $errors->has('empresa') ? ' is-invalid': '' }}" wire:model="empresa" placeholder="Ingrese Nombre de la empresa">
-                            <div class="invalid-feedback">
-                                {{ $errors->first('empresa') }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Web Empresa</label>
-                            <input type="text" class="form-control" wire:model="web_empresa" placeholder="Ingrese pagina web de la empresa">
-                        </div>
-                        <div class="form-group">
-                            <label class="{{ $errors->has('direccion') ? ' text-danger': '' }}">Direccion</label>
-                            <input type="text" class="form-control {{ $errors->has('direccion') ? ' is-invalid': '' }}" wire:model="direccion" placeholder="Ingrese Direccion de la empresa">
-                            <div class="invalid-feedback">
-                                {{ $errors->first('direccion') }}
-                            </div>
+                            <label class="@error('name') text-danger @enderror">Nombre Completo</label>
+                            <input type="text" class="form-control @error('name') text-danger @enderror" wire:model="name">
+                            <i class="text-danger">
+                                @error('name') {{ $message }} @enderror
+                            </i>
                         </div>
                         <div class="form-group mb-2">
-                            <label class="{{ $errors->has('email') ? ' text-danger': '' }}">Correo</label>
-                            <input type="email" class="form-control {{ $errors->has('email') ? ' is-invalid': '' }}" wire:model="email"
-                                placeholder="Ingrese Correo Electronico">
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('email') }}
-                                </div>
+                            <label class="@error('email') text-danger @enderror">Correo</label>
+                            <input type="email" class="form-control @error('email') text-danger @enderror" wire:model="email">
+                                <i class="text-danger">
+                                    @error('email') {{ $message }} @enderror
+                                </i>
                         </div>
                         <div class="form-group mb-2">
-                            <label class="{{ $errors->has('password') ? ' text-danger': '' }}">Contraseña</label>
-                            <input type="number" class="form-control {{ $errors->has('password') ? ' is-invalid': '' }}" wire:model="password"
-                                placeholder="Ingrese una contraseña alfanumerica">
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('password') }}
-                                </div>
+                            <label class="@error('password') text-danger @enderror">Contraseña</label>
+                            <input type="text" class="form-control @error('password') text-danger @enderror" wire:model="password">
+                                <i class="text-danger">
+                                    @error('password') {{ $message }} @enderror
+                                </i>
                         </div>
                         <div class="form-group mb-2">
-                            <label class="{{ $errors->has('rol') ? ' text-danger': '' }}">Rol</label>
-                            <select class="form-select {{ $errors->has('rol') ? ' is-invalid': '' }}" wire:model="rol">
+                            <label class="@error('rol') text-danger @enderror">Rol</label>
+                            <select class="form-select @error('rol') text-danger @enderror" wire:model="rol">
                                 <option value="">Seleccione una opción...</option>
                                 {{--  @foreach ($roles as $r)
                                     <option value="{{ $r->id }}">{{ $r->rol }}</option>
                                 @endforeach  --}}
                             </select>
-                            <div class="invalid-feedback">
-                                {{ $errors->first('rol') }}
-                            </div>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="{{ $errors->has('descripcion') ? ' text-danger': '' }}">Servicio</label>
-                            <textarea class="form-control {{ $errors->has('descripcion') ? ' is-invalid': '' }}" wire:model="descripcion" rows="3"></textarea>
-                            <div class="invalid-feedback">
-                                {{ $errors->first('descripcion') }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Facebook (agregar link opcional)</label>
-                            <input type="text" class="form-control" wire:model="facebook" placeholder="Ingrese link de facebook">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Instagram (agregar link opcional)</label>
-                            <input type="text" class="form-control" wire:model="instagram" placeholder="Ingrese link de instagram">
+                            <i class="text-danger">
+                                @error('rol') {{ $message }} @enderror
+                            </i>
                         </div>
                     </div>
                     <div class="modal-footer">
