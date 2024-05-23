@@ -63,12 +63,15 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>Rol</label>
-                            <select class="form-select" wire:model="rol">
+                            <label class="@error('rol') text-danger @enderror">Rol</label>
+                            <select class="form-select @error('rol') text-danger @enderror" wire:model="rol">
                                 <option value="">Seleccione una opción...</option>
                                 <option value="Administrador">Administrador</option>
                                 <option value="Cliente">Cliente</option>
                             </select>
+                            <i class="text-danger">
+                                @error('rol') {{ $message }} @enderror
+                            </i>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -90,13 +93,13 @@
                                     <h4 class="modal-title">Editar Prceso</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="form-group mb-2">
-                                        <label for="exampleInputEmail1">Prefijo</label>
-                                        <input type="text" class="form-control"  wire:model="pro_prefijox">
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="exampleInputEmail1">Nombre</label>
-                                        <input type="text" class="form-control"  wire:model="pro_nombrex">
+                                    <div class="form-group">
+                                        <label>Rol</label>
+                                        <select class="form-select" wire:model="rolx">
+                                            <option value="">Seleccione una opción...</option>
+                                            <option value="Administrador">Administrador</option>
+                                            <option value="Cliente">Cliente</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -143,7 +146,7 @@
                  confirmButtonText: "SI"
              }).then((result) => {
                  if (result.isConfirmed) {
-                     livewire.emitTo('proceso', 'delete', postId);
+                     livewire.emitTo('roles', 'delete', postId);
  
                      Swal.fire({
                      title: "!Eliminado!",
