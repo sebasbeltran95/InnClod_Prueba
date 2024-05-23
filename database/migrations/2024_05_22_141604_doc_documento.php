@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('doc_documento', function (Blueprint $table) {
             $table->id();
             $table->string('doc_nombre',50)->nullable();
-            $table->integer('doc_codigo')->nullable();
+            $table->string('doc_codigo',50)->nullable();
             $table->text('doc_contenido')->nullable();
             $table->integer("doc_id_tipo")->nullable();
             $table->integer("doc_id_proceso")->nullable();
