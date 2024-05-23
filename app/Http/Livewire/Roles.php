@@ -17,6 +17,11 @@ class Roles extends Component
 
     protected $listeners = ['render', 'delete'];
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function getRolesProperty()
     {
         if($this->search == ""){

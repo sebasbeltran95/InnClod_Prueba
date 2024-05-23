@@ -20,6 +20,11 @@ class Documento extends Component
 
     protected $listeners = ['render', 'delete'];
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function getDocumentoProperty()
     {
         if($this->search == ""){

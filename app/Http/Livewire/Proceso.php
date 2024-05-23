@@ -17,6 +17,11 @@ class Proceso extends Component
 
     protected $listeners = ['render', 'delete'];
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function getProcesoProperty()
     {
         if($this->search == ""){

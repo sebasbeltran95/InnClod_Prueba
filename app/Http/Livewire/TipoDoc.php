@@ -17,6 +17,11 @@ class TipoDoc extends Component
 
     protected $listeners = ['render', 'delete'];
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function getTipoProperty()
     {
         if($this->search == ""){
