@@ -10,7 +10,7 @@ Se realiza CRUD  en el  framework laravel, las instrucciones de despliegue son l
 - Ejecutar la migracion.
 - Entrar a base de datos en la tabla users puede crear el usuario con el que ingresara al aplicativo o puede ir a la siguiente  ruta dentro del proyecto (routes/web.php), dentro del archivo web encontrara la siguiente linea Auth::routes(['register' => false]);, lo que tiene que hacer es borrar lo quee sta dentro del parentesis Auth::routes(); y con esto se habilitara la ruta register, entrando a esta ruta puede crerar los accesos para poder ingresar al aplicativo.
 - Dentro del proyecto se encuentra una carpeta llamada BD y dentro esta la base de datos con los accesos para entrar al aplicativo y con las pruebas que se realizaron, lo unico que tiene que hacer es crear la base de datos clod y importar las tablas, para ingresar al aplicativo debe ingresar las siguientes credenciales(admin@mail.com y su contraseña es 12345678).
-- Para poder inicializar el servidor hacemos lo siguiente: abre el proyecto con visual studio code, luego se procede a abrir la terminar, se ingresa el comando php artisan serve, este comando arrojara la siguiente url http://127.0.0.1:8000, esta url se copia y se pega en el navegador de su preferencia
+- Para poder inicializar el servidor hacemos lo siguiente: abre el proyecto con visual studio code, luego se procede a abrir la terminar, se ingresa el comando php artisan serve, este comando arrojara la siguiente url http://127.0.0.1:8000, esta url se copia y se pega en el navegador de su preferencia, este paso se realiza despues de haber echo la migracion o de haberse importado la base de datos que se encuentra en el proyecto.
 
 ## Vistas
 
