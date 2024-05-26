@@ -87,7 +87,8 @@ class Documento extends Component
         $tipo->doc_id_proceso = $this->doc_id_proceso;
         $tipo->save();
         $this->reset();
-        session()->flash('datos','ok');
+        $msj = ['!Registrado!', 'Se registro el Documento', 'success'];
+        $this->emit('ok', $msj);
     }
 
     /**
@@ -135,7 +136,8 @@ class Documento extends Component
         $data->doc_id_tipo = $this->doc_id_tipox;
         $data->doc_id_proceso = $this->doc_id_procesox;
         $data->save();
-        session()->flash('datosact','ok');
+        $msj = ['!Actualizado!', 'Se actualizo el Documento', 'success'];
+        $this->emit('ok', $msj);
     }
 
     /**

@@ -155,12 +155,8 @@
                                         <input type="text" class="form-control" wire:model="doc_nombrex">
                                     </div>
                                     <div class="form-group mb-2">
-                                        <label>Codigo</label>
-                                        <input type="number" class="form-control" wire:model="doc_codigox">
-                                    </div>
-                                    <div class="form-group mb-2">
                                         <label>Contenido</label>
-                                        <textarea class="form-control @error('doc_contenido') text-danger @enderror" wire:model="doc_contenidox" rows="3"></textarea>
+                                        <textarea class="form-control" wire:model="doc_contenidox" rows="3"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Prefijo</label>
@@ -195,45 +191,36 @@
         </div>
         {{--  editar   --}}
     </div>
-     {{--  @dump(session('datos'))  --}}
-     @if(session('datos'))
-     <script>
-         Swal.fire(
-             '!Registrado!',
-             'Se registro el Documento',
-             'success'
-         )
-     </script>
-     @elseif (session('datosact'))
-         <script>
-             Swal.fire(
-                 '!Actualizado!',
-                 'Se actualizo el Documento',
-                 'success'
-             )
-         </script>
-     @endif
-     <script>
-         livewire.on('deletePost', postId => {
-             Swal.fire({
-                 title: "¿Estas Seguro?",
-                 text: "¿Desea Eliminar este registro?",
-                 icon: "warning",
-                 showCancelButton: true,
-                 confirmButtonColor: "#3085d6",
-                 cancelButtonColor: "#d33",
-                 confirmButtonText: "SI"
-             }).then((result) => {
-                 if (result.isConfirmed) {
-                     livewire.emitTo('documento', 'delete', postId);
- 
-                     Swal.fire({
-                     title: "!Eliminado!",
-                     text: "Se elimino el Documento",
-                     icon: "success"
-                     });
-                 }
-             });
-         });
-     </script>
 </div>
+@push('js')
+<script>
+    Livewire.on('ok', msj =>{
+        Swal.fire(
+            msj[0],
+            msj[1],
+            msj[2],
+        )
+    });
+    livewire.on('deletePost', postId => {
+        Swal.fire({
+            title: "¿Estas Seguro?",
+            text: "¿Desea Eliminar este registro?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "SI"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                livewire.emitTo('documento', 'delete', postId);
+
+                Swal.fire({
+                title: "!Eliminado!",
+                text: "Se elimino el Documento",
+                icon: "success"
+                });
+            }
+        });
+    });
+</script>
+@endpush

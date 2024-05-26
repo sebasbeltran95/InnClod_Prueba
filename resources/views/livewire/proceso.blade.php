@@ -142,7 +142,7 @@
                 confirmButtonText: "SI"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    livewire.emitTo('tipo-doc', 'delete', postId);
+                    livewire.emitTo('proceso', 'delete', postId);
 
                     Swal.fire({
                     title: "!Eliminado!",
