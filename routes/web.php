@@ -2,7 +2,6 @@
 
 use App\Http\Livewire\Documento;
 use App\Http\Livewire\Proceso;
-use App\Http\Livewire\Roles;
 use App\Http\Livewire\TipoDoc;
 use App\Http\Livewire\Usuarios;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +23,6 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/proceso', Proceso::class)->name('proceso');
     Route::get('/tipo_doc', TipoDoc::class)->name('tipo_doc');
     Route::get('/usuarios', Usuarios::class)->name('usuarios');
-    Route::get('/rol', Roles::class)->name('rol');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 
