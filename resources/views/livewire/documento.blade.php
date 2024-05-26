@@ -1,5 +1,5 @@
-@section('title', 'Documentos')
 <div>
+    @section('title', 'Documentos')
     <div class="container-fluid">
         <div class="row text-center mb-3">
             <div class="col-md-12 d-flex justify-content-between align-items-center">
