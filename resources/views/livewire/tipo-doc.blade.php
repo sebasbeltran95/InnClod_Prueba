@@ -99,20 +99,12 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group mb-2">
-                                        <label for="exampleInputEmail1">nombre</label>
+                                        <label>nombre</label>
                                         <input type="text" class="form-control"  wire:model="tip_nombrex">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group mb-2">
                                         <label>Prefijo</label>
-                                        <select class="form-select" wire:model="tip_prefijox">
-                                            <option value="">Seleccione una opción...</option>
-                                            <option value="CC">CC</option>
-                                            <option value="CE">CE</option>
-                                            <option value="NIT">NIT</option>
-                                            <option value="TI">TI</option>
-                                            <option value="PASAPORTE">PASAPORTE</option>
-                                            <option value="RC">RC</option>
-                                        </select>
+                                        <input type="text" class="form-control" wire:model="tip_prefijox">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -129,45 +121,36 @@
         </div>
         {{--  editar   --}}
     </div>
-     {{--  @dump(session('datos'))  --}}
-     @if(session('datos'))
-     <script>
-         Swal.fire(
-             '!Registrado!',
-             'Se registro el Tipo Doc',
-             'success'
-         )
-     </script>
-     @elseif (session('datosact'))
-         <script>
-             Swal.fire(
-                 '!Actualizado!',
-                 'Se actualizo el Tipo Doc',
-                 'success'
-             )
-         </script>
-     @endif
-     <script>
-         livewire.on('deletePost', postId => {
-             Swal.fire({
-                 title: "¿Estas Seguro?",
-                 text: "¿Desea Eliminar este registro?",
-                 icon: "warning",
-                 showCancelButton: true,
-                 confirmButtonColor: "#3085d6",
-                 cancelButtonColor: "#d33",
-                 confirmButtonText: "SI"
-             }).then((result) => {
-                 if (result.isConfirmed) {
-                     livewire.emitTo('tipo-doc', 'delete', postId);
- 
-                     Swal.fire({
-                     title: "!Eliminado!",
-                     text: "Se elimino el Tipo Doc",
-                     icon: "success"
-                     });
-                 }
-             });
-         });
-     </script>
 </div>
+@push('js')
+    <script>
+        Livewire.on('ok', msj =>{
+            Swal.fire(
+                msj[0],
+                msj[1],
+                msj[2],
+            )
+        });
+        livewire.on('deletePost', postId => {
+            Swal.fire({
+                title: "¿Estas Seguro?",
+                text: "¿Desea Eliminar este registro?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "SI"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    livewire.emitTo('tipo-doc', 'delete', postId);
+
+                    Swal.fire({
+                    title: "!Eliminado!",
+                    text: "Se elimino el Tipo Doc",
+                    icon: "success"
+                    });
+                }
+            });
+        });
+    </script>
+@endpush

@@ -60,7 +60,8 @@ class TipoDoc extends Component
         $tipo->tip_prefijo = $this->tip_prefijo;
         $tipo->save();
         $this->reset();
-        session()->flash('datos','ok');
+        $msj = ['!Registrado!', 'Se registro el Tipo Doc', 'success'];
+        $this->emit('ok', $msj);
     }
 
      /**
@@ -88,7 +89,8 @@ class TipoDoc extends Component
         $data->tip_nombre = $this->tip_nombrex;
         $data->tip_prefijo = $this->tip_prefijox;
         $data->save();
-        session()->flash('datosact','ok');
+        $msj = ['!Actualizado!', 'Se actualizo el Tipo Doc', 'success'];
+        $this->emit('ok', $msj);
     }
 
      /**
