@@ -61,7 +61,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Crear Tipo Doc</h4>
+                        <h4 class="modal-title">Crear Proceso</h4>
                     </div>
                     <div class="modal-body">
                         <div class="form-group mb-2">
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" wire:click='crear'>Registrar Tipo Doc</button>
+                        <button type="submit" class="btn btn-primary" wire:click='crear'>Registrar Proceso</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary" wire:click="actualizar">Editar
-                                        proceso</button>
+                                        Proceso</button>
                                     <button type="button" class="btn btn-danger"
                                         data-bs-dismiss="modal">Cerrar</button>
                                 </div>
@@ -121,45 +121,36 @@
         </div>
         {{--  editar   --}}
     </div>
-     {{--  @dump(session('datos'))  --}}
-     @if(session('datos'))
-     <script>
-         Swal.fire(
-             '!Registrado!',
-             'Se registro el Proceso',
-             'success'
-         )
-     </script>
-     @elseif (session('datosact'))
-         <script>
-             Swal.fire(
-                 '!Actualizado!',
-                 'Se actualizo el Proceso',
-                 'success'
-             )
-         </script>
-     @endif
-     <script>
-         livewire.on('deletePost', postId => {
-             Swal.fire({
-                 title: "¿Estas Seguro?",
-                 text: "¿Desea Eliminar este registro?",
-                 icon: "warning",
-                 showCancelButton: true,
-                 confirmButtonColor: "#3085d6",
-                 cancelButtonColor: "#d33",
-                 confirmButtonText: "SI"
-             }).then((result) => {
-                 if (result.isConfirmed) {
-                     livewire.emitTo('proceso', 'delete', postId);
- 
-                     Swal.fire({
-                     title: "!Eliminado!",
-                     text: "Se elimino el Proceso",
-                     icon: "success"
-                     });
-                 }
-             });
-         });
-     </script>
 </div>
+@push('js')
+    <script>
+        Livewire.on('ok', msj =>{
+            Swal.fire(
+                msj[0],
+                msj[1],
+                msj[2],
+            )
+        });
+        livewire.on('deletePost', postId => {
+            Swal.fire({
+                title: "¿Estas Seguro?",
+                text: "¿Desea Eliminar este registro?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "SI"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    livewire.emitTo('tipo-doc', 'delete', postId);
+
+                    Swal.fire({
+                    title: "!Eliminado!",
+                    text: "Se elimino el Proceso",
+                    icon: "success"
+                    });
+                }
+            });
+        });
+    </script>
+@endpush

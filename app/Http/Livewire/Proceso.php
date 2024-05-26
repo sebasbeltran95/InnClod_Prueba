@@ -59,7 +59,8 @@ class Proceso extends Component
         $tipo->pro_nombre = $this->pro_nombre;
         $tipo->save();
         $this->reset();
-        session()->flash('datos','ok');
+        $msj = ['!Registrado!', 'Se registro el Proceso', 'success'];
+        $this->emit('ok', $msj);
     }
 
      /**
@@ -87,7 +88,8 @@ class Proceso extends Component
         $data->pro_prefijo = $this->pro_prefijox;
         $data->pro_nombre = $this->pro_nombrex;
         $data->save();
-        session()->flash('datosact','ok');
+        $msj = ['!Actualizado!', 'Se actualizo el Proceso', 'success'];
+        $this->emit('ok', $msj);
     }
 
     /**
