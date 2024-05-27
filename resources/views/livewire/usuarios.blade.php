@@ -25,7 +25,7 @@
                                 <tr>
                                     <td class="text-center">{{ $usu->name }}</td>
                                     <td class="text-center">{{ $usu->email }}</td>
-                                    {{--  <td class="text-center">{{ $roll::find($usu->rol)->rol }}</td>  --}}
+                                    <td class="text-center">{{ $usu->rol }}</td>
                                     <td class="d-flex justify-content-center">
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                                             <button type="button" class="btn btn-sm btn-success"
@@ -85,9 +85,8 @@
                             <label class="@error('rol') text-danger @enderror">Rol</label>
                             <select class="form-select @error('rol') text-danger @enderror" wire:model="rol">
                                 <option value="">Seleccione una opción...</option>
-                                {{--  @foreach ($roles as $r)
-                                    <option value="{{ $r->id }}">{{ $r->rol }}</option>
-                                @endforeach  --}}
+                                <option value="Admon">Administrador</option>
+                                <option value="Client">Cliente</option>
                             </select>
                             <i class="text-danger">
                                 @error('rol') {{ $message }} @enderror
@@ -115,72 +114,20 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="valor_smmlv">Tipo de Documento</label>
-                                        <select class="form-select" wire:model="tipo_documentox">
-                                            <option value="">Seleccione una opción...</option>
-                                            <option value="Carnet Diplomatico">Carnet Diplomatico</option>
-                                            <option value="Cédula de Ciudadania">Cédula de Ciudadania</option>
-                                            <option value="Cédula de Extranjería">Cédula de Extranjería</option>
-                                            <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
-                                            <option value="Pasaporte">Pasaporte</option>
-                                            <option value="Registro Civil">Registro Civil</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">No Documento</label>
-                                        <input type="text" class="form-control" wire:model="no_documentox" placeholder="Ingrese No de documento o NIT">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Nombre Completo</label>
-                                        <input type="text" class="form-control" wire:model="nombre_completox" placeholder="Nombre completo">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Telefono</label>
-                                        <input type="number" class="form-control" wire:model="telefonox" placeholder="Ingrese numero de telefono">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Whatsapp</label>
-                                        <input type="number" class="form-control" wire:model="whatsappx" placeholder="Ingrese numero de telefono">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Empresa</label>
-                                        <input type="text" class="form-control" wire:model="empresax" placeholder="Ingrese Nombre de la empresa">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Web Empresa</label>
-                                        <input type="text" class="form-control" wire:model="web_empresax" placeholder="Ingrese pagina web de la empresa">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Direccion</label>
-                                        <input type="text" class="form-control" wire:model="direccionx" placeholder="Ingrese Direccion de la empresa">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email</label>
-                                        <input type="text" class="form-control" wire:model="emailx">
+                                        <label>Nombre Completo</label>
+                                        <input type="text" class="form-control" wire:model="namex">
                                     </div>
                                     <div class="form-group mb-2">
-                                        <label for="rolx">Rol</label>
+                                        <label class="@error('email') text-danger @enderror">Correo</label>
+                                        <input type="email" class="form-control" wire:model="emailx">
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label>Rol</label>
                                         <select class="form-select" wire:model="rolx">
-                                            {{--  @foreach ($roles as $r)
-                                                <option value="{{ $r->id }}">{{ $r->rol }}</option>
-                                            @endforeach  --}}
+                                            <option value="">Seleccione una opción...</option>
+                                            <option value="Admon">Administrador</option>
+                                            <option value="Client">Cliente</option>
                                         </select>
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label>Foto</label>
-                                        <input type="file" class="form-control" wire:model="fotox">
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="exampleInputEmail1">Servicio</label>
-                                        <textarea class="form-control" wire:model="descripcionx" rows="3"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Facebook (agregar link opcional)</label>
-                                        <input type="text" class="form-control" wire:model="facebookx" placeholder="Ingrese link de facebook">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Instagram (agregar link opcional)</label>
-                                        <input type="text" class="form-control" wire:model="instagramx" placeholder="Ingrese link de instagram">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -196,25 +143,6 @@
             </div>
         </div>
         {{--  editar   --}}
-
-        {{--  modal descripcion   --}}
-        {{--  <div class="modal fade" id="verObs" tabindex="-1" wire:ignore.self>
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title fs-5">Servicios</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p style="text-align: justify" >{{$descripciony}}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>   --}}
-        {{--  modal descripcion   --}}
 
         {{--  contraseña   --}}
         <div class="container-fluid">
@@ -233,7 +161,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    {{--  <button type="submit" class="btn btn-primary" wire:click="actuacredenciales({{ $usu->id }})">Editar Contraseña</button>  --}}
+                                    <button type="submit" class="btn btn-primary" wire:click="actuacredenciales({{ $usu->id }})">Editar Contraseña</button>
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                                 </div>
                             </div>
@@ -244,40 +172,16 @@
         </div>
         {{--  contraseña   --}}
     </div>
-        {{--  @dump(session('datos'))  --}}
-    @if(session('datos'))
+</div>
+@push('js')
     <script>
-        Swal.fire(
-            '!Registrado!',
-            'Se registro el Cliente',
-            'success'
-        )
-    </script>
-    @elseif (session('datosact'))
-        <script>
+        Livewire.on('ok', msj =>{
             Swal.fire(
-                '!Actualizado!',
-                'Se actualizo el Cliente',
-                'success'
+                msj[0],
+                msj[1],
+                msj[2],
             )
-        </script>
-    @elseif (session('datoscorreo'))
-        <script>
-            Swal.fire({
-                title: "El correo ya existe",
-                icon: 'warning',
-            })
-        </script>
-    @elseif (session('datoscredenciales'))
-    <script>
-        Swal.fire(
-            '!Actualizado!',
-            'Se actualizaron las credenciales',
-            'success'
-        )
-    </script>
-    @endif
-    <script>
+        });
         livewire.on('deletePost', postId => {
             Swal.fire({
                 title: "¿Estas Seguro?",
@@ -293,11 +197,11 @@
 
                     Swal.fire({
                     title: "!Eliminado!",
-                    text: "Se elimino el Cliente",
+                    text: "Se elimino el Tipo Doc",
                     icon: "success"
                     });
                 }
             });
         });
     </script>
-</div>
+@endpush
