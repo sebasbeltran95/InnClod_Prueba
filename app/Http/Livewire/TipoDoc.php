@@ -78,7 +78,7 @@ class TipoDoc extends Component
     }
 
      /**
-     * Update
+     * actualizar
      *
      * Esta funcion recibe los datos del modal Editar, con el id  proporcionado se procede a busca en base de datos,
      * se modifica el dato solicitado y se procede a guardar la informacion  

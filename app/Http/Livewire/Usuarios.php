@@ -34,7 +34,12 @@ class Usuarios extends Component
         }
     }
 
-
+    /**
+     * Crear
+     *
+     * Esta funcion recibe los datos del modal Crear,luego de ser recibidos pasan or un proceso de validaciones esto quiere dedcir si la informacion
+     * que esta en el validador se esta cumpliendo, despues  pasan a ser creeados y posteriormente a ser guardados 
+     * */
     public function crear()
     {
         $this->validate([
@@ -70,6 +75,12 @@ class Usuarios extends Component
         }
     }
 
+     /**
+     * cargausuario
+     *
+     * Esta funcion recibe los datos que le manda el boton Editar,  procede a guardar la informacion en variables diferentes y asi posteriormente poser 
+     * ser mostrada en el front a traves del modal editar 
+     */
     public function cargausuario($obj)
     {
         $this->idx =  $obj['id'];
@@ -77,6 +88,13 @@ class Usuarios extends Component
         $this->emailx =  $obj['email'];
         $this->rolx = $obj['rol'];
     }
+
+     /**
+     * actua
+     *
+     * Esta funcion recibe los datos del modal Editar, con el id  proporcionado se procede a busca en base de datos,
+     * se modifica el dato solicitado y se procede a guardar la informacion  
+     */
     public function actua()
     {
         $data = User::find($this->idx);
@@ -89,14 +107,27 @@ class Usuarios extends Component
         $this->emit('ok', $msj);
 
     }
+
+     /**
+     * cargacredenciales
+     *
+     * Esta funcion recibe los datos que le manda el boton Editar Contraseña,  procede a guardar la informacion en variables diferentes y asi posteriormente poser 
+     * ser mostrada en el front a traves del modal editar contraseña 
+     */
     public function cargacredenciales($obj)
     {
         $this->idy = $obj;
     }
-    public function actuacredenciales($idu)
+
+     /**
+     * actuacredenciales
+     *
+     * Esta funcion recibe los datos del modal Editar Contraseña, con el id  proporcionado se procede a busca en base de datos,
+     * se modifica el dato solicitado y se procede a guardar la informacion  
+     */
+    public function actuacredenciales()
     {
-        dd($idu);
-        $data = User::find($idu);
+        $data = User::find($this->idy);
         if($this->passwordy != null){
             $data->password = Hash::make($this->passwordy);
             $data->save();
