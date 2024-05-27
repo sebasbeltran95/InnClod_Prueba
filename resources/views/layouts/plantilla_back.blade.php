@@ -57,7 +57,7 @@
                                 <i class="fas fa-user"></i> usuarios
                             </a>
                             <ul class="dropdown-menu w-100">
-                                @if (Auth()->user()->rol == 1)
+                                @if (Auth()->user()->rol == 'Admon')
                                 <li><a class="dropdown-item" href="{{ route('usuarios') }}"><i class="fas fa-users"></i>Crear Usuarios</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 @endif

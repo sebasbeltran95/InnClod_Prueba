@@ -12,7 +12,7 @@ class Usuarios extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $name, $email,$password,$rol;
-    public $idy, $idx, $namex, $emailx,$passwordx,$rolx;
+    public $idy, $passwordy, $idx, $namex, $emailx,$passwordx,$rolx;
     public $search  = "";
 
     protected $listeners = ['render', 'delete'];
@@ -95,15 +95,17 @@ class Usuarios extends Component
     }
     public function actuacredenciales($idu)
     {
+        dd($idu);
         $data = User::find($idu);
         if($this->passwordy != null){
             $data->password = Hash::make($this->passwordy);
             $data->save();
         }
         $this->reset();
-        session()->flash('datoscredenciales','ok');
+        $msj = ['!Actualizado!', 'Se actualizaron las credenciales', 'success'];
+        $this->emit('ok', $msj);
     }
-    
+
      /**
      * Render
      *
